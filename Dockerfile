@@ -1,5 +1,5 @@
 # stage 1
-FROM node:19-alpine as build
+FROM node:16-alpine as build
 
 # change into a folder called /app
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN yarn build
 FROM nginx:1.23-alpine
 COPY --from=build /app/build /usr/share/nginx/html
 
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/default.conf
 
 EXPOSE 80
 
